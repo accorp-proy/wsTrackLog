@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso1Seccion1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bd8ddab6-f5d1-4fe6-bd65-7d8fc43eea7a">
+	<property name="ireport.zoom" value="5.0"/>
+	<property name="ireport.x" value="1594"/>
+	<property name="ireport.y" value="39"/>
+	<parameter name="par_id_check_list_ejecucion" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+(select car.firma from  check_list_pie_firma_ejecucion_et pie inner join tipo_cargo_et car on pie.id_tipo_cargo = car.id_tipo_cargo where pie.id_check_list_ejecucion = che.id_check_list_ejecucion and pie.orden = 1 and pie.estado='ACT') as firma1,
+(select car.firma from  check_list_pie_firma_ejecucion_et pie inner join tipo_cargo_et car on pie.id_tipo_cargo = car.id_tipo_cargo where pie.id_check_list_ejecucion = che.id_check_list_ejecucion and pie.orden = 2 and pie.estado='ACT') as firma2,
+(select car.firma from  check_list_pie_firma_ejecucion_et pie inner join tipo_cargo_et car on pie.id_tipo_cargo = car.id_tipo_cargo where pie.id_check_list_ejecucion = che.id_check_list_ejecucion and pie.orden = 3 and pie.estado='ACT') as firma3,
+(select pie.responsable from  check_list_pie_firma_ejecucion_et pie inner join tipo_cargo_et car on pie.id_tipo_cargo = car.id_tipo_cargo where pie.id_check_list_ejecucion = che.id_check_list_ejecucion and pie.orden = 1 and pie.estado='ACT') as responsable1,
+(select pie.responsable from  check_list_pie_firma_ejecucion_et pie inner join tipo_cargo_et car on pie.id_tipo_cargo = car.id_tipo_cargo where pie.id_check_list_ejecucion = che.id_check_list_ejecucion and pie.orden = 2 and pie.estado='ACT') as responsable2,
+(select pie.responsable from  check_list_pie_firma_ejecucion_et pie inner join tipo_cargo_et car on pie.id_tipo_cargo = car.id_tipo_cargo where pie.id_check_list_ejecucion = che.id_check_list_ejecucion and pie.orden = 3 and pie.estado='ACT') as responsable3
+from  check_list_ejecucion_et che
+inner join planificacion_et pla
+on che.id_planificacion=pla.id_planificacion
+where che.id_check_list_ejecucion = $P{par_id_check_list_ejecucion} ;]]>
+	</queryString>
+	<field name="firma1" class="java.lang.String"/>
+	<field name="firma2" class="java.lang.String"/>
+	<field name="firma3" class="java.lang.String"/>
+	<field name="responsable1" class="java.lang.String"/>
+	<field name="responsable2" class="java.lang.String"/>
+	<field name="responsable3" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="91" splitType="Stretch">
+			<line>
+				<reportElement x="385" y="60" width="170" height="1" uuid="aeb8469d-ab75-4a71-bf9d-bc76ffa763c5">
+					<printWhenExpression><![CDATA[$F{firma3} != null]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="193" y="60" width="170" height="1" uuid="de2a6fe8-2b60-4b18-932d-e6bc7e95d0b5">
+					<printWhenExpression><![CDATA[$F{firma2} != null]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="61" width="170" height="15" uuid="b872d614-a0de-43d4-9453-f00dd4f27c2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{firma1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="193" y="61" width="170" height="15" uuid="34fd8ad7-528d-41fc-9603-557649b5ad4d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{firma2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="385" y="61" width="170" height="15" uuid="6643b4f0-4696-4672-8171-5bb2eb7695ab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{firma3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="76" width="170" height="15" uuid="e424432d-b921-4de9-9f2f-98453f720435"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="193" y="76" width="170" height="15" uuid="9c8ee1e1-003d-44d3-b810-7ef0d4d55449"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="385" y="76" width="170" height="15" uuid="befc7482-cf51-4b88-84ed-86dd71386090"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable3}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="60" width="170" height="1" uuid="41b34444-fa39-4d6f-b418-4168e9ee9efe">
+					<printWhenExpression><![CDATA[$F{firma1} != null]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="60" uuid="479b1b42-26f9-41ac-9fc4-cffdfb270fef"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Items</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_par_008">
+			<p:growl showDetail="false" id="mensajes"></p:growl>
+			<p:panelGrid id="pnl_00" styleClass="fullSize" columns="2"
+				columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid">
+				<f:facet name="header">
+					<p:row>
+						<p:column>
+							<div align="left">
+								<p:outputLabel value="Items "></p:outputLabel>
+								<p:outputLabel value="par_008.xhtml"
+									rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+							</div>
+						</p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			<p:dataTable paginator="true" rows="15" reflow="true"
+				tableStyle="table-layout: auto;" style="margin-bottom:20px"
+				emptyMessage="No existe Items" id="dtbItem" value="#{ItemBn.items}"
+				var="item">
+				<p:column headerText="Código">
+					<h:outputText value="#{item.placa}"></h:outputText>
+				</p:column>
+				<p:column headerText="Categoría de Estación">
+					<h:outputText value="#{item.placa}"></h:outputText>
+				</p:column>
+				<p:column headerText="Estado">
+					<h:outputText value="#{item.estado.descripcion}"></h:outputText>
+				</p:column>
+				<p:column width="30">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						action="#{ItemBn.modificar(item)}"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

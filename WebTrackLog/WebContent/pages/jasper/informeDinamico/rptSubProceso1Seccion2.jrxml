@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8a121974-5d7a-48a3-b2c9-5a9c60ec2108">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="par_id_check_list_kpi" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+kpi.orden_reporte_0 as orden,
+kpi.seccion_0_reemplazo as seccion
+from check_list_proceso_et che
+inner join proceso_et pro
+on che.id_proceso=pro.id_proceso
+inner join check_list_kpi_et kpi
+on che.id_check_list_proceso = kpi.id_check_list_proceso
+where kpi.id_check_list_kpi=$P{par_id_check_list_kpi}
+and che.visualizar_reporte='true'
+and kpi.visualizar_reporte='true'
+order by kpi.orden;]]>
+	</queryString>
+	<field name="orden" class="java.lang.String"/>
+	<field name="seccion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="30" height="15" uuid="ba9145da-5512-49ef-8688-141bb7d35112"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{orden}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="30" y="0" width="472" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="4f4b8f05-b086-4c23-bef6-dfe7bb15eb2f"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seccion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

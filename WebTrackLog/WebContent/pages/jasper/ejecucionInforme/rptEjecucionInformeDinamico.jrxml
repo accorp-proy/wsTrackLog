@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptNovedadControl" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9baa07d-5e3c-45a3-b124-eba2c2e9b9bf">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="771"/>
+	<property name="net.sf.jasperreports.export.docx.flexible.row.height" value="true"/>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_id_check_list_ejecucion" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+che.id_check_list as idCheckList,
+che.centro as titulo,
+che.izquierda as nombre,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 1 and visualizar_reporte='true') as proceso1,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 2 and visualizar_reporte='true') as proceso2,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 3 and visualizar_reporte='true') as proceso3,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 4 and visualizar_reporte='true') as proceso4,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 5 and visualizar_reporte='true') as proceso5,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 6 and visualizar_reporte='true') as proceso6,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 7 and visualizar_reporte='true') as proceso7,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 8 and visualizar_reporte='true') as proceso8,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 9 and visualizar_reporte='true') as proceso9,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and pro.orden = 10 and visualizar_reporte='true') as proceso10,
+chek.visualizar_img as visualizarImg
+from check_list_ejecucion_et che
+inner join check_list_et chek
+on che.id_check_list=chek.id_check_list
+where che.id_check_list_ejecucion = $P{par_id_check_list_ejecucion};]]>
+	</queryString>
+	<field name="idchecklist" class="java.lang.Long"/>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="proceso1" class="java.lang.Long"/>
+	<field name="proceso2" class="java.lang.Long"/>
+	<field name="proceso3" class="java.lang.Long"/>
+	<field name="proceso4" class="java.lang.Long"/>
+	<field name="proceso5" class="java.lang.Long"/>
+	<field name="proceso6" class="java.lang.Long"/>
+	<field name="proceso7" class="java.lang.Long"/>
+	<field name="proceso8" class="java.lang.Long"/>
+	<field name="proceso9" class="java.lang.Long"/>
+	<field name="proceso10" class="java.lang.Long"/>
+	<field name="visualizarimg" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="45">
+			<line>
+				<reportElement x="554" y="0" width="1" height="34" uuid="6085f20a-2e19-4212-b3ae-d6e7c36ca8f0"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="355" y="-1" width="200" height="1" uuid="b485611f-38d0-492b-8025-f3bbf67f7d10"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="355" y="34" width="200" height="1" uuid="25ba3346-dc38-4812-b54e-88e8c7d7ed35"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="35" width="555" height="10" uuid="30a9cafe-55b9-47a9-9f0b-48aa35a2b73d"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="185" y="0" width="170" height="35" uuid="07b100fa-52bb-43d0-912f-1dda7fa524a4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="185" height="35" uuid="4139a01d-3197-49da-917a-30119a46bffd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="364" y="1" width="181" height="32" isRemoveLineWhenBlank="true" uuid="5dd775b8-1886-462a-9b0e-27f55341225d"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="40" width="555" height="10" uuid="b2bc2aea-73cb-4246-ac29-5312de62660e"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="-1" y="0" width="556" height="40" uuid="631db86a-016c-4a0f-ae8c-b479cfe14606"/>
+				<subreportParameter name="par_id_check_list_ejecucion">
+					<subreportParameterExpression><![CDATA[$P{par_id_check_list_ejecucion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubCabecera.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="40" uuid="1fb1c850-d8b0-4fd1-9017-626416689511"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_check_list_proceso_ejecucion">
+					<subreportParameterExpression><![CDATA[$F{proceso1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="556" height="40" uuid="2841117a-08e7-4ac3-b375-a646ab0d34f2"/>
+				<subreportParameter name="par_id_check_list_proceso_ejecucion">
+					<subreportParameterExpression><![CDATA[$F{proceso2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="556" height="40" uuid="ea7587d6-b327-4f4c-bbbb-98acf5f3e5ea"/>
+				<subreportParameter name="par_id_check_list_proceso_ejecucion">
+					<subreportParameterExpression><![CDATA[$F{proceso3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso3.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="40" uuid="095450bc-1970-4d19-ab1b-f8047ff9abe0"/>
+				<subreportParameter name="par_id_check_list_proceso_ejecucion">
+					<subreportParameterExpression><![CDATA[$F{proceso4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso4.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="40" uuid="a5c3632d-b02e-4962-ad39-8fa261db9d02"/>
+				<subreportParameter name="par_id_check_list_proceso_ejecucion">
+					<subreportParameterExpression><![CDATA[$F{proceso5}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso5.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40"/>
+		<band height="40"/>
+		<band height="40"/>
+		<band height="40"/>
+		<band height="41">
+			<subreport>
+				<reportElement x="-1" y="0" width="557" height="41" uuid="a275bfc8-cce4-4ecd-ad14-16ef671a86a6"/>
+				<subreportParameter name="par_id_check_list">
+					<subreportParameterExpression><![CDATA[$P{par_id_check_list_ejecucion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubImagen.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40"/>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="556" height="40" uuid="e78f3d98-f863-415d-b22a-c3b036c83dce"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_check_list_ejecucion">
+					<subreportParameterExpression><![CDATA[$P{par_id_check_list_ejecucion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubPieFirma.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="16">
+			<staticText>
+				<reportElement x="145" y="1" width="282" height="15" uuid="3c02cbf9-7baf-4e65-a78d-1b7cd4ae0a39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Departamento de Control Interno]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="0" width="537" height="1" uuid="d1b5ff3c-24c7-4929-a531-f0f9ef4b7868"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

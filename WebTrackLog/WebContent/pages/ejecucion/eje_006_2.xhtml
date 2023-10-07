@@ -1,0 +1,268 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_006_2"
+		id="dlg_eje_006_2" appendTo="@(body)" width="750px" height="480px"
+		resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Formulario Dinámico " />
+			<p:outputLabel value="eje_006_2.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_006_2">
+			<p:growl showDetail="false" id="mensajes">
+			</p:growl>
+			<div align="right">
+				<p:commandButton icon="ui-icon-check" process="@this frm_eje_006_2"
+					action="#{CheckListEjecucionCtrlBn.guardarPro02Frm01()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<br />
+			<p:tabView id="tabWiwe0">
+				<p:tab id="tab01"
+					title="#{CheckListEjecucionCtrlBn.pro02Frm01.nombreFrm}"
+					rendered="#{CheckListEjecucionCtrlBn.pro02Frm01V}">
+					<p:fieldset id="fil01" legend="Formulario Dinámico"
+						toggleable="true" toggleSpeed="500">
+						<p:dataTable id="dtbpro02Frm01" reflow="true"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							var="procesoF"
+							value="#{CheckListEjecucionCtrlBn.pro02Frm01List}"
+							emptyMessage="No existe formulario">
+							<f:facet name="header">
+								<div align="right">
+									<p:commandButton id="btnApro02Frm01" icon="ui-icon-add"
+										action="#{CheckListEjecucionCtrlBn.anadirPro02Frm1()}"
+										update="dtbpro02Frm01,frm_eje_006_2:mensajes" process="@this dtbpro02Frm01"
+										title="Agregar Items al formulario "></p:commandButton>
+								</div>
+							</f:facet>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm01.nombFrm0}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm01.frm0}">
+								<p:inputText value="#{procesoF.columna1}" maxlength="50"></p:inputText>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm01.nombFrm2}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm01.frm2}">
+								<p:spinner id="spinner1" value="#{procesoF.columna2}" min="0"
+									max="1000" stepFactor="1" suffix="">
+								</p:spinner>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm01.nombFrm4}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm01.frm4}">
+								<p:inputNumber value="#{procesoF.columna3}" minValue="1"
+									decimalPlaces="2"></p:inputNumber>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm01.nombFrm6}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm01.frm6}">
+								<p:calendar size="10" value="#{procesoF.columna4}"
+									placeholder="Fecha" title="Fecha" navigator="true"
+									pattern="dd/MM/yyy" locale="es"></p:calendar>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm01.nombFrm1}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm01.frm1}">
+								<p:inputText value="#{procesoF.columna5}" maxlength="50"></p:inputText>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm01.nombFrm3}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm01.frm3}">
+								<p:spinner value="#{procesoF.columna6}" min="0" max="1000"
+									stepFactor="1" suffix="">
+								</p:spinner>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm01.nombFrm5}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm01.frm5}">
+								<p:inputNumber value="#{procesoF.columna7}" minValue="1"
+									decimalPlaces="0"></p:inputNumber>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm01.nombFrm7}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm01.frm7}">
+								<p:calendar size="10" value="#{procesoF.columna8}"
+									placeholder="Fecha" title="Fecha" navigator="true"
+									pattern="dd/MM/yyy HH:mm" locale="es"></p:calendar>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnEpro02Frm01"
+										update="dtbpro02Frm01,frm_eje_006_2:mensajes"
+										process="@this dtbpro02Frm01"
+										action="#{CheckListEjecucionCtrlBn.quitarPro02Frm1(0,procesoF)}"
+										title="Eliminar" icon="ui-icon-delete"></p:commandButton>
+								</div>
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+				</p:tab>
+				<p:tab id="tab02"
+					title="#{CheckListEjecucionCtrlBn.pro02Frm02.nombreFrm}"
+					rendered="#{CheckListEjecucionCtrlBn.pro02Frm02V}">
+					<p:fieldset id="fil02" legend="Formulario Dinámico"
+						toggleable="true" toggleSpeed="500">
+						<p:dataTable id="dtbpro02Frm02" reflow="true"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							var="procesoF"
+							value="#{CheckListEjecucionCtrlBn.pro02Frm02List}"
+							emptyMessage="No existe formulario">
+							<f:facet name="header">
+								<div align="right">
+									<p:commandButton id="btnApro02Frm02" icon="ui-icon-add"
+										action="#{CheckListEjecucionCtrlBn.anadirPro02Frm2()}"
+										update="dtbpro02Frm02,frm_eje_006_2:mensajes" process="@this dtbpro02Frm02"
+										title="Agregar Items al formulario "></p:commandButton>
+								</div>
+							</f:facet>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm02.nombFrm0}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm02.frm0}">
+								<p:inputText value="#{procesoF.columna1}" maxlength="50"></p:inputText>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm02.nombFrm2}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm02.frm2}">
+								<p:spinner id="spinner1" value="#{procesoF.columna2}" min="0"
+									max="1000" stepFactor="1" suffix="">
+								</p:spinner>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm02.nombFrm4}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm02.frm4}">
+								<p:inputNumber value="#{procesoF.columna3}" minValue="1"
+									decimalPlaces="2"></p:inputNumber>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm02.nombFrm6}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm02.frm6}">
+								<p:calendar size="10" value="#{procesoF.columna4}"
+									placeholder="Fecha" title="Fecha" navigator="true"
+									pattern="dd/MM/yyy" locale="es"></p:calendar>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm02.nombFrm1}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm02.frm1}">
+								<p:inputText value="#{procesoF.columna5}" maxlength="50"></p:inputText>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm02.nombFrm3}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm02.frm3}">
+								<p:spinner value="#{procesoF.columna6}" min="0" max="1000"
+									stepFactor="1" suffix="">
+								</p:spinner>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm02.nombFrm5}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm02.frm5}">
+								<p:inputNumber value="#{procesoF.columna7}" minValue="1"
+									decimalPlaces="2"></p:inputNumber>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm02.nombFrm7}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm02.frm7}">
+								<p:calendar size="10" value="#{procesoF.columna8}"
+									placeholder="Fecha" title="Fecha" navigator="true"
+									pattern="dd/MM/yyy HH:mm" locale="es"></p:calendar>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnEpro02Frm02"
+										update="dtbpro02Frm02,frm_eje_006_2:mensajes"
+										process="@this dtbpro02Frm02"
+										action="#{CheckListEjecucionCtrlBn.quitarPro02Frm1(1,procesoF)}"
+										title="Eliminar" icon="ui-icon-delete"></p:commandButton>
+								</div>
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+				</p:tab>
+				<p:tab id="tab03"
+					title="#{CheckListEjecucionCtrlBn.pro02Frm03.nombreFrm}"
+					rendered="#{CheckListEjecucionCtrlBn.pro02Frm03V}">
+					<p:fieldset id="fil03" legend="Formulario Dinámico"
+						toggleable="true" toggleSpeed="500">
+						<p:dataTable id="dtbpro02Frm03" reflow="true"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							var="procesoF"
+							value="#{CheckListEjecucionCtrlBn.pro02Frm03List}"
+							emptyMessage="No existe formulario">
+							<f:facet name="header">
+								<div align="right">
+									<p:commandButton id="btnApro02Frm03" icon="ui-icon-add"
+										action="#{CheckListEjecucionCtrlBn.anadirPro02Frm3()}"
+										update="dtbpro02Frm03,frm_eje_006_2:mensajes" process="@this dtbpro02Frm03"
+										title="Agregar Items al formulario "></p:commandButton>
+								</div>
+							</f:facet>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm03.nombFrm0}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm03.frm0}">
+								<p:inputText value="#{procesoF.columna1}" maxlength="50"></p:inputText>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm03.nombFrm2}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm03.frm2}">
+								<p:spinner id="spinner1" value="#{procesoF.columna2}" min="0"
+									max="1000" stepFactor="1" suffix="">
+								</p:spinner>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm03.nombFrm4}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm03.frm4}">
+								<p:inputNumber value="#{procesoF.columna3}" minValue="1"
+									decimalPlaces="2"></p:inputNumber>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm03.nombFrm6}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm03.frm6}">
+								<p:calendar size="10" value="#{procesoF.columna4}"
+									placeholder="Fecha" title="Fecha" navigator="true"
+									pattern="dd/MM/yyy" locale="es"></p:calendar>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm03.nombFrm1}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm03.frm1}">
+								<p:inputText value="#{procesoF.columna5}" maxlength="50"></p:inputText>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm03.nombFrm3}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm03.frm3}">
+								<p:spinner value="#{procesoF.columna6}" min="0" max="1000"
+									stepFactor="1" suffix="">
+								</p:spinner>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm03.nombFrm5}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm03.frm5}">
+								<p:inputNumber value="#{procesoF.columna7}" minValue="1"
+									decimalPlaces="2"></p:inputNumber>
+							</p:column>
+							<p:column
+								headerText="#{CheckListEjecucionCtrlBn.pro02Frm03.nombFrm7}"
+								rendered="#{CheckListEjecucionCtrlBn.pro02Frm03.frm7}">
+								<p:calendar size="10" value="#{procesoF.columna8}"
+									placeholder="Fecha" title="Fecha" navigator="true"
+									pattern="dd/MM/yyy HH:mm" locale="es"></p:calendar>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnEpro02Frm03"
+										update="dtbpro02Frm03,frm_eje_006_2:mensajes"
+										process="@this dtbpro02Frm03"
+										action="#{CheckListEjecucionCtrlBn.quitarPro02Frm1(2,procesoF)}"
+										title="Eliminar" icon="ui-icon-delete"></p:commandButton>
+								</div>
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+				</p:tab>
+			</p:tabView>
+
+		</h:form>
+	</p:dialog>
+</ui:composition>

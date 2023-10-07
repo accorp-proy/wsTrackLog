@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso1Seccion1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bd8ddab6-f5d1-4fe6-bd65-7d8fc43eea7a">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="par_id_check_list_proceso" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+pro.orden as ordenPro,
+pro.nombre_proceso as nombrePro,
+kpi.orden_reporte as orden,
+kpi.seccion_reemplazo as seccion,
+kpi.id_check_list_kpi as idCheckListKpi
+from check_list_proceso_et che
+inner join proceso_et pro
+on che.id_proceso=pro.id_proceso
+inner join check_list_kpi_et kpi
+on che.id_check_list_proceso = kpi.id_check_list_proceso
+where che.id_check_list_proceso=$P{par_id_check_list_proceso}
+and che.visualizar_reporte='true'
+and kpi.visualizar_reporte='true'
+order by kpi.orden_reporte;]]>
+	</queryString>
+	<field name="ordenpro" class="java.lang.Long"/>
+	<field name="nombrepro" class="java.lang.String"/>
+	<field name="orden" class="java.lang.String"/>
+	<field name="seccion" class="java.lang.String"/>
+	<field name="idchecklistkpi" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15">
+			<textField isBlankWhenNull="true">
+				<reportElement x="25" y="0" width="477" height="15" forecolor="#00B050" uuid="6c58e98a-0904-46d5-b6dc-212ea0f3202b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrepro}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="25" height="15" forecolor="#00B050" uuid="080166ea-343d-4f29-bc20-f4f2bcdbfc3a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ordenpro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<subreport>
+				<reportElement x="50" y="15" width="452" height="15" uuid="fc9b55cd-fdb0-4c5f-b519-045eea698dbc"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_check_list_kpi">
+					<subreportParameterExpression><![CDATA[$F{idchecklistkpi}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso1Seccion2.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isBlankWhenNull="true">
+				<reportElement x="25" y="0" width="25" height="15" uuid="f4d38dd8-de59-4472-8d7a-dbe2306fac1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{orden}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="0" width="452" height="15" uuid="26ffbdfb-cc90-4cae-a809-fd41d8be9933"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seccion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

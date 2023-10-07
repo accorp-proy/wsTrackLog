@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8a121974-5d7a-48a3-b2c9-5a9c60ec2108">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="par_id_check_list_proceso_ejecucion" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select frm.id_check_list_proceso_formulario as id
+from check_list_proceso_ejecucion_formulario_et frm
+where frm.id_check_list_proceso_ejecucion =  $P{par_id_check_list_proceso_ejecucion}
+group by frm.id_check_list_proceso_formulario
+order by frm.id_check_list_proceso_formulario ;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="25" y="0" width="530" height="15" forecolor="#00B050" uuid="6d1a6f71-981e-4e85-a5e9-32fedca1ed7b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Formularios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="25" height="15" uuid="6409e64d-18f3-4db7-9c8f-727261faefd4"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<subreport>
+				<reportElement x="25" y="0" width="530" height="15" uuid="17245f93-3f85-4ed6-bb05-da0be608c0d8"/>
+				<subreportParameter name="par_id_check_list_proceso_frm">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_check_list_proceso_ejecucion">
+					<subreportParameterExpression><![CDATA[$P{par_id_check_list_proceso_ejecucion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubFormulario.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="0" width="25" height="15" uuid="eead677c-2f39-4d09-acdb-0da10d2a3393"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

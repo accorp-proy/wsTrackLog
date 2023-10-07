@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">Planes de acción organizados por carpetas </ui:define>
+	<ui:define name="content">
+
+		<div class="card">
+			<style type="text/css">
+.ui-treetable {
+	margin-top: 40px
+}
+
+.ui-treetable table {
+	table-layout: fixed
+}
+</style>
+			<h:form id="frm_par_015">
+
+				<p:growl showDetail="true" id="mensajes">
+				</p:growl>
+
+				<div align="center">
+					<h2>Planes de acción organizados por carpetas</h2>
+				</div>
+				<p:treeTable widgetVar="treeTable" value="#{TreePlanAccionBn.root}"
+					var="document" style="margin-top:0" selectionMode="single"
+					selection="#{TreePlanAccionBn.selectedNode}">
+					<f:facet name="header">
+						<span>Información de Plan de Acción y Adjuntos</span>
+					</f:facet>
+					<p:column headerText="Nombre" filterBy="#{document.nombre}"
+						filterMatchMode="contains">
+						<h:outputText value="#{document.nombre}" />
+					</p:column>
+					<p:column headerText="Acción">
+						<div align="center">
+							<p:commandButton rendered="#{document.tipo eq 'Adjunto'}"
+								title="Descargar Adjunto" icon="fa fa-gg" immediate="true"
+								ajax="false"
+								actionListener="#{appMain.fileDownloadPath(document.id0.toString(),document.nombre)}"
+								process="@this">
+								<p:fileDownload value="#{appMain.download}" />
+							</p:commandButton>
+							<p:commandButton rendered="#{document.tipo eq 'Plan'}"
+								icon="fa fa-file-text-o" immediate="true" ajax="false"
+								title="Descargar Plan Acción"
+								actionListener="#{ReporteBn.imprimirExcel(16,'360',document.id0.toString(),document.id1.toString(),null,null,null,null,null,null,null,false)}">
+								<p:fileDownload value="#{appMain.download}" />
+							</p:commandButton>
+							<p:spacer></p:spacer>
+							<p:commandButton rendered="#{document.tipo eq 'Plan'}"
+								icon="fa fa-file-text" immediate="true" ajax="false"
+								title="Descargar Seguimiento Plan de  Acción"
+								actionListener="#{ReporteBn.imprimirExcel(20,'1',document.id0.toString(),document.id1.toString(),null,null,null,null,null,null,null,false)}">
+								<p:fileDownload value="#{appMain.download}" />
+							</p:commandButton>
+						</div>
+					</p:column>
+
+				</p:treeTable>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

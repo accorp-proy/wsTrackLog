@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_003_2" id="dialog_003_2"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Reportes Plantillas Generadas" />
+			<p:outputLabel value="par_003_2.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pla_003_2">
+			<p:panelGrid styleClass="sinborde w100">
+				<p:row>
+					<p:column>
+						<h:outputLabel value="CheckList" />
+					</p:column>
+					<p:column>
+						<p:commandButton icon="fa fa-file-pdf-o"
+							title="Botón permite descargar en formato Pdf" immediate="true"
+							ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(1,appMain.usuario.nombreUsuario,PlantillaGeneradaBn.checkListSeleccionadoR.idCheckList.toString(),PlantillaGeneradaBn.checkListSeleccionadoR.tipoChecKList.descripcion,PlantillaGeneradaBn.checkListSeleccionadoR.codigo,PlantillaGeneradaBn.checkListSeleccionadoR.evaluacion.idEvaluacion.toString(),null,null,null,null,null,false)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Matriz" />
+					</p:column>
+					<p:column>
+						<p:commandButton icon="fa fa-file-pdf-o"
+							title="Botón permite descargar en formato Excel"
+							disabled="#{PlantillaGeneradaBn.checkListSeleccionadoR.evaluacion.idEvaluacion ne 2 and PlantillaGeneradaBn.checkListSeleccionadoR.evaluacion.idEvaluacion ne 4}"
+							immediate="true" ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(2,appMain.usuario.nombreUsuario,PlantillaGeneradaBn.checkListSeleccionadoR.idCheckList.toString(),PlantillaGeneradaBn.checkListSeleccionadoR.tipoChecKList.descripcion,PlantillaGeneradaBn.checkListSeleccionadoR.codigo,PlantillaGeneradaBn.checkListSeleccionadoR.evaluacion.idEvaluacion.toString(),null,null,null,null,null,true)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Informe Dinámico" />
+					</p:column>
+					<p:column>
+						<p:commandButton value="Previa" icon="ui-icon-print"
+							title="Generar Vista Previa Informe Dinámico"
+							update=":frm_pla_rpt_003" styleClass="secondary"
+							oncomplete="PF('dlg_pla_rpt_003').show()"
+							action="#{PlantillaGeneradaBn.imprimir()}"></p:commandButton>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+<ui:include src="/pages/reporte/plantilla/pla_rpt_003.xhtml"></ui:include>
+	</p:dialog>
+</ui:composition>

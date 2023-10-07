@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_001_1" id="dialog_001_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Reportes CheckList Ejecutados" />
+			<p:outputLabel value="par_001_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_rpt_001_1">
+			<p:panelGrid styleClass="sinborde w100">
+				<p:row>
+					<p:column>
+						<h:outputLabel value="CheckList" />
+					</p:column>
+					<p:column>
+						<p:commandButton title="Descargar en formato Excel"
+							rendered="#{CheckListEjecutadoBn.checkListEjecucionR.evaluacion.criterio == true}"
+							icon="fa fa-file-excel-o" immediate="true" ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(6,appMain.usuario.nombreUsuario,CheckListEjecutadoBn.checkListEjecucionR.idCheckListEjecucion.toString(),CheckListEjecutadoBn.checkListEjecucionR.tipoChecKList.descripcion,CheckListEjecutadoBn.checkListEjecucionR.codigo,null,null,null,null,null,null,true)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+						<p:commandButton title="Descargar en formato Excel"
+							rendered="#{CheckListEjecutadoBn.checkListEjecucionR.evaluacion.criterio == false}"
+							icon="fa fa-file-excel-o" immediate="true" ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(7,appMain.usuario.nombreUsuario,CheckListEjecutadoBn.checkListEjecucionR.idCheckListEjecucion.toString(),CheckListEjecutadoBn.checkListEjecucionR.tipoChecKList.descripcion,CheckListEjecutadoBn.checkListEjecucionR.codigo,CheckListEjecutadoBn.checkListEjecucionR.planificacion.agencia.idAgencia.toString(),appMain.usuario.personaUsuario.nombreCompleto,null,null,null,null,true)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Matriz" />
+					</p:column>
+					<p:column>
+						<p:commandButton title="Descargar en formato Excel"
+							disabled="#{CheckListEjecutadoBn.checkListEjecucionR.tipoChecKList.generaMatriz == false}"
+							icon="fa fa-file-excel-o" immediate="true" ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(8,appMain.usuario.nombreUsuario,CheckListEjecutadoBn.checkListEjecucionR.idCheckListEjecucion.toString(),CheckListEjecutadoBn.checkListEjecucionR.tipoChecKList.descripcion,CheckListEjecutadoBn.checkListEjecucionR.codigo,null,null,null,null,null,null,true)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Novedad" />
+					</p:column>
+					<p:column>
+						<p:commandButton title="Descargar Reporte Novedad en formato Pdf"
+							rendered="#{CheckListEjecutadoBn.checkListEjecucionR.evaluacion.idEvaluacion eq 2}"
+							disabled="#{CheckListEjecutadoBn.checkListEjecucionR.tipoChecKList.generaReporte == false}"
+							icon="fa fa-file-pdf-o" immediate="true" ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(11,appMain.usuario.nombreUsuario,CheckListEjecutadoBn.checkListEjecucionR.idCheckListEjecucion.toString(),CheckListEjecutadoBn.checkListEjecucionR.planificacion.agencia.idAgencia.toString(),CheckListEjecutadoBn.checkListEjecucionR.evaluacion.idEvaluacion.toString(),null,null,null,null,null,null,false)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+						<p:commandButton
+							title="Descargar Reporte Novedad CCTV en formato Pdf"
+							disabled="#{CheckListEjecutadoBn.checkListEjecucionR.tipoChecKList.generaReporte == false}"
+							rendered="#{CheckListEjecutadoBn.checkListEjecucionR.evaluacion.idEvaluacion eq 5}"
+							icon="fa fa-file-pdf-o" immediate="true" ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(21,appMain.usuario.nombreUsuario,CheckListEjecutadoBn.checkListEjecucionR.idCheckListEjecucion.toString(),CheckListEjecutadoBn.checkListEjecucionR.planificacion.agencia.idAgencia.toString(),null,null,null,null,null,null,null,false)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+						<p:commandButton
+							title="Descargar Reporte Novedad Supervisión de Efectivo en formato Pdf"
+							rendered="#{CheckListEjecutadoBn.checkListEjecucionR.evaluacion.idEvaluacion eq 4}"
+							disabled="#{CheckListEjecutadoBn.checkListEjecucionR.tipoChecKList.generaReporte == false}"
+							icon="fa fa-file-pdf-o" immediate="true" ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(11,appMain.usuario.nombreUsuario,CheckListEjecutadoBn.checkListEjecucionR.idCheckListEjecucion.toString(),CheckListEjecutadoBn.checkListEjecucionR.planificacion.agencia.idAgencia.toString(),CheckListEjecutadoBn.checkListEjecucionR.evaluacion.idEvaluacion.toString(),null,null,null,null,null,null,false)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Informe Dinámico" />
+					</p:column>
+					<p:column>
+						<p:commandButton value="Previa" icon="ui-icon-print"
+							title="Informe Dinámico" update=":frm_eje_rpt_003"
+							styleClass="secondary" oncomplete="PF('dlg_eje_rpt_003').show()"
+							action="#{CheckListEjecutadoBn.imprimir()}"></p:commandButton>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+		<ui:include src="/pages/reporte/informeDinamico/eje_rpt_003.xhtml"></ui:include>
+	</p:dialog>
+</ui:composition>
